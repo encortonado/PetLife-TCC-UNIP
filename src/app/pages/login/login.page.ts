@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Authenticate } from 'src/app/models/authenticate';
 
 @Component({
@@ -13,13 +14,19 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor() { }
+  msgHeader = '';
+  msgBody = '';
+  backButtonSubscription;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   login() {}
 
-  register() {}
+  register() {
+    this.router.navigateByUrl('/sign-up');
+  }
 
 }

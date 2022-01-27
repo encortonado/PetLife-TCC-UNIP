@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
         this.logon(this.auth.email);
 
         setTimeout(() => {
-          this.router.navigateByUrl('/tabs');
+          this.router.navigateByUrl('/main');
         },2001);
       } else {
         this.msgHeader = 'Authenticate Failure';

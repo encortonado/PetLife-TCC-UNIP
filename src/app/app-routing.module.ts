@@ -14,7 +14,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'tabs',
+    path: 'main',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
     canActivate: [AuthGuard],
   },
@@ -30,8 +30,6 @@ const routes: Routes = [
     path: 'resources',
     loadChildren: () => import('./shared/pages/resources/resources.module').then( m => m.ResourcesPageModule)
   },
-
-
 
 ];
 

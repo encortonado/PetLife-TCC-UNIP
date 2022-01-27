@@ -12,9 +12,26 @@ h3{
   text-align: center;
 }
 
+.login-input{
+  display: grid;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+ }
+
 .label {
   color: #02adec;
   font-weight: bold;
   font-family: inherit;
 }
 
+.email-input,
+.senha-input{
+ text-indent: 5px;
+ width: 154%;
+ background-color: #d1d1d1;
+}
+
+.item-inner{
+  border: none !important; 
+}

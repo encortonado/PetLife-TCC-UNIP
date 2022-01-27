@@ -16,6 +16,9 @@ export class AuthService {
 
 
   constructor(private storage: Storage, private plt: Platform) {
+
+    this.storage.create();
+
     this.plt.ready().then(() => {
       this.checkToken();
     });

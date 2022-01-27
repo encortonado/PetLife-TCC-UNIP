@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -20,7 +21,8 @@ import { BrMaskerModule } from 'br-mask';
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     BrMaskerModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

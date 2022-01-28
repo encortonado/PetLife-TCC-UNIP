@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>services-tab</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Meus Anúncios
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-fab-button (click)="pageServicos()" color="primary">
+  <ion-icon name="add"></ion-icon>
+</ion-fab-button>
+
 <ion-content>
 
+  <img src="../../assets/imgs/servicos.jpg" />
+
+  <div *ngFor="let anuncio of anuncios">
+    <ion-card (click)="viewOrUpdateAnuncio(anuncio)">
+      <ion-item>
+        <h2 style="margin-right: 4%;width: 67px;margin-top: 10px;">{{anuncio.id}}</h2>
+        <h2 class="h2-titulo-anuncio">{{anuncio.titulo}}</h2>
+        <h2 class="h2-preco">R$ {{anuncio.preco}},00</h2>
+      </ion-item>
+      <ion-card-content style="text-align: center;">
+        <p>Descrição: {{anuncio.descricao}}</p>
+        <p style="color: red;font-weight: bold;">Data de Cadastro: {{anuncio.dataCadastroFormatted}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

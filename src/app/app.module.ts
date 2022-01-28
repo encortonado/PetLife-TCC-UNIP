@@ -22,7 +22,7 @@ import { BrMaskerModule } from 'br-mask';
     IonicStorageModule.forRoot(),
     BrMaskerModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

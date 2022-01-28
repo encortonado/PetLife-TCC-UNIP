@@ -1,3 +1,6 @@
+/**
+     * Interface de usuario, usuarioDTO
+     */
 export interface User {
   id: string;
   email: string;

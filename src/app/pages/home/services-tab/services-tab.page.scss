@@ -1,0 +1,34 @@
+on-fab-button{
+  margin-left: 1000px;
+}
+ion-fab-button{
+  margin: 0 auto;
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  z-index: 40;
+  display: block;
+  bottom: 20px;
+}
+
+.h2-preco{
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 17px;
+  padding-right: 10px;
+  width: 150px;
+  text-align: right;
+  color: green;
+  font-weight: bold;
+}
+
+.h2-titulo-anuncio{
+  margin-top: 10px;
+  width: 100%;
+}
+
+ion-title {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}

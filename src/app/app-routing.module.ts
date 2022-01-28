@@ -31,6 +31,8 @@ const routes: Routes = [
     loadChildren: () => import('./shared/pages/resources/resources.module').then( m => m.ResourcesPageModule)
   },
 
+
+
 ];
 
 

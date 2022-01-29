@@ -3,6 +3,9 @@ import { ActivatedRoute, NavigationEnd, Router, ActivatedRouteSnapshot } from '@
 import { Subject } from 'rxjs';
 import { takeUntil, filter, tap } from 'rxjs/operators';
 
+@Component({
+  template: ''
+})
 
 export abstract class RouterPagePage implements OnDestroy {
 

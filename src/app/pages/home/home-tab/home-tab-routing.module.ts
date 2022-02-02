@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomeTabPage
+  },
+  {
+    path: 'ad',
+    loadChildren: () => import('./ad/ad.module').then( m => m.AdPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 

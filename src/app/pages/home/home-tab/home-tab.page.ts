@@ -1,10 +1,10 @@
-import { User } from 'src/app/models/user';
+import { User } from './../../../models/user';
 import { Ads } from './../../../models/ads';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AdsService } from './../../../services/ads/ads.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/authentication/user/user.service';
+import { UserService } from './../../../services/authentication/user/user.service';
 
 @Component({
   selector: 'app-home-tab',
@@ -67,7 +67,7 @@ export class HomeTabPage implements OnInit {
 
   viewAnuncio(anuncio: Ads) {
     console.log(anuncio);
-    this.router.navigate(['/ad'], {
+    this.router.navigate(['main/home/ad'], {
       queryParams: anuncio
     });
   }

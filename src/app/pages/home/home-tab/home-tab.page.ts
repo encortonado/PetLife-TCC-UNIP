@@ -79,7 +79,9 @@ export class HomeTabPage implements OnInit {
 
       this.usuario = res;
 
-      this.router.navigate(['/profile'], {
+      // this.usuario.password = '***********';
+
+      this.router.navigate(['main/home/profile'], {
         queryParams: this.usuario
       });
     });

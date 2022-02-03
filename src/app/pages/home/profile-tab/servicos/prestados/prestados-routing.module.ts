@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PrestadosPage
+  },
+  {
+    path: 'view',
+    loadChildren: () => import('./servicos-prestados-view/servicos-prestados-view.module').then( m => m.ServicosPrestadosViewPageModule)
   }
 ];
 

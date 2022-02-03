@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ContratadosPage
+  },
+  {
+    path: 'view',
+    loadChildren: () => import('./servicos-contratados-view/servicos-contratados-view.module').then( m => m.ServicosContratadosViewPageModule)
   }
 ];
 

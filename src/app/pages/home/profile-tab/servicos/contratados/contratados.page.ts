@@ -56,7 +56,7 @@ export class ContratadosPage implements OnInit {
 
   viewServico(agenda: Schedule) {
     console.log(agenda);
-    this.router.navigate(['/view-servicos-contratados'], {
+    this.router.navigate(['main/profile/contratados/view'], {
       queryParams: agenda
     });
   }

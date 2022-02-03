@@ -53,7 +53,7 @@ export class SignUpPage implements OnInit {
 
       nome: [this.user.nome, [Validators.required]],
       dataNascimento: [this.user.dataNascimento, [Validators.required]],
-      ddd: [this.user.ddd, [Validators.required]],
+      ddd: [this.user.ddd, [Validators.required, Validators.maxLength(2)]],
       telefone: [this.user.telefone, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
       email: [this.user.email, [Validators.required]],
       password: [this.user.password, [Validators.required]],

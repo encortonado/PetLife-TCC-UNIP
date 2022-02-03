@@ -1,9 +1,103 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>profile-tab</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Profile
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-item *ngIf="userImage.base64 !== null">
+    <ion-avatar style="border: 2px solid #c5bdbd;width: 135px;height: 135px;border-radius: 27%;margin-bottom: 16%;">
+      <img style="width: 100%;height: 100%;border-radius: 26%;" src="{{userImage.base64}}">
+      <ion-icon (click)="pickFileAndGetBase64String()" class="ion-camera" name="camera"></ion-icon>
+    </ion-avatar>
+  </ion-item>
+
+  <ion-item *ngIf="userImage.base64 === null">
+    <ion-avatar style="border: 2px solid #c5bdbd;width: 135px;height: 135px;border-radius: 27%;margin-bottom: 16%;">
+      <img style="width: 100%;height: 100%;border-radius: 26%;"
+        src="../../assets/imgs/profile-default.jpg">
+      <ion-icon (click)="pickFileAndGetBase64String()" class="ion-camera" name="camera"></ion-icon>
+    </ion-avatar>
+  </ion-item>
+
+  <ion-card *ngIf="!showEdit">
+    <ion-card-header style="padding-top: 10px;">
+      <ion-card-title style="font-family: monospace; color: #5d5d62;font-size: 36px;"> {{ usuario.nome }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-button class="btn-op1" color="tertiary" expand="full" (click)="editProfile()">Editar Perfil</ion-button>
+    <ion-button expand="full" color="tertiary" (click)="servicosContratados()">Serviços Contratados</ion-button>
+    <ion-button expand="full" color="tertiary" (click)="servicosPrestados()">Serviços Prestados</ion-button>
+    <ion-button expand="full" color="tertiary" (click)="logout()">Logout</ion-button>
+
+  </ion-card>
+
+  <form *ngIf="showEdit" [formGroup]="atGroup">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="usuario.nome" name="nome" required placeholder="Nome" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="true" type="text" [(ngModel)]="usuario.email" name="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data de Nascimento</ion-label>
+      <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="usuario.dataNascimento" name="dataNascimento"
+        placeholder="DD MM YYYY" formControlName="dataNascimento">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" maxlength="2" [(ngModel)]="usuario.ddd" name="ddd" required placeholder="DDD" formControlName="ddd"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" maxlength="9" [(ngModel)]="usuario.telefone" name="telefone" required
+        placeholder="Telefone" formControlName="telefone">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input (ionBlur)="buscarEndereco()" type="text" [(ngModel)]="usuario.cep" name="cep" required
+        placeholder="Cep" formControlName="cep">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" disabled="true" [(ngModel)]="usuario.logradouro" name="logradouro" required
+        placeholder="Logradouro" formControlName="logradouro">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="usuario.numero" name="numero" required placeholder="Nº" formControlName="numero">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="usuario.complemento" name="complemento"  placeholder="Complemento" formControlName="complemento">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" disabled="true" [(ngModel)]="usuario.bairro" name="bairro" required placeholder="Bairro" formControlName="bairro">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" disabled="true" [(ngModel)]="usuario.cidade" name="cidade" required placeholder="Cidade" formControlName="cidade">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" disabled="true" [(ngModel)]="usuario.estado" name="estado" required placeholder="Estado" formControlName="estado">
+      </ion-input>
+    </ion-item>
+    <ion-grid class="buttons-form">
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="cancelEditProfile()" color="danger" expand="block">Cancelar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="updateProfile()" color="primary" expand="block" [disabled]="!atGroup.valid">Atualizar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-card-content> Usuário desde: {{ dataCadastro }} </ion-card-content>
 
 </ion-content>

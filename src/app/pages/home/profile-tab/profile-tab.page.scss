@@ -1,0 +1,78 @@
+ion-avatar  {
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  height: 120px;
+  width: 120px;
+
+}
+
+.btn-op1 {
+  margin-top: -1%;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+}
+
+ion-title {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-family: monospace;
+}
+
+ion-card-content{
+padding: 0px;
+}
+
+ion-card{
+  text-align: center;
+}
+
+ion-card-title{
+  color:#4c51d4;
+}
+
+ion-card-content{
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.card-email{
+margin-bottom: 3%;
+}
+
+.btn{
+  color: #6c757d;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6c757d;
+}
+
+form{
+  margin-bottom: 7%;
+}
+
+ion-grid{
+  margin-top: 5%;
+}
+
+ion-content {
+  font-family: monospace;
+}
+
+ion-button{
+  font-family: monospace;
+  background-color: #a3a0a0;
+}
+
+.ion-camera{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: gray;
+  float: right;
+  margin-top: 3%;
+}

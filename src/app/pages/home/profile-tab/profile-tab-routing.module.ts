@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileTabPage
+  },
+  {
+    path: 'contratados',
+    loadChildren: () => import('./servicos/contratados/contratados.module').then( m => m.ContratadosPageModule)
+  },
+  {
+    path: 'prestados',
+    loadChildren: () => import('./servicos/prestados/prestados.module').then( m => m.PrestadosPageModule)
   }
 ];
 

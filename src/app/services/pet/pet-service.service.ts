@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { API_CONFIG } from 'src/config/api.config';
+import { environment } from 'src/environments/environment';
 import { Anuncio } from '../../models/anuncio';
 import { Pet } from '../../models/pet';
 
@@ -18,26 +18,26 @@ export class PetService {
   savePet(pet: Pet) {
 
     console.log(pet);
-    return this.http.post(`${API_CONFIG.baseUrl}/savePet`
+    return this.http.post(`${environment.baseUrl}/savePet`
       , pet);
   }
 
   updatePet(pet: Pet) {
 
-    return this.http.post(`${API_CONFIG.baseUrl}/savePet`
+    return this.http.post(`${environment.baseUrl}/savePet`
       , pet);
   }
 
   findAll(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(`${API_CONFIG.baseUrl}/getPets`);
+    return this.http.get<Pet[]>(`${environment.baseUrl}/getPets`);
   }
 
   findByUserId(userId: string): Observable<Pet[]> {
-    return this.http.get<Pet[]>(`${API_CONFIG.baseUrl}/getPetByUserId/${userId}`);
+    return this.http.get<Pet[]>(`${environment.baseUrl}/getPetByUserId/${userId}`);
   }
 
   deletePetById(id: string): Observable<string> {
-    return this.http.get<string>(`${API_CONFIG.baseUrl}/deletePet/${id}`);
+    return this.http.get<string>(`${environment.baseUrl}/deletePet/${id}`);
   }
 
 }

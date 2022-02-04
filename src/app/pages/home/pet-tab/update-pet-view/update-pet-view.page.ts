@@ -238,6 +238,4 @@ export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
     await setTimeout(() => { alert.present(); }, 2000);
   }
 
-
-
 }

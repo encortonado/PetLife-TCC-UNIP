@@ -14,6 +14,8 @@ import { RouterPagePage } from './../../../shared/pages/router-page/router-page/
 import { UserService } from './../../../services/authentication/user/user.service';
 import { GlobalParameters } from './../../../shared/parameters/global-parameters';
 
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+
 import * as moment from 'moment';
 
 @Component({
@@ -48,6 +50,7 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
     private parameters: GlobalParameters,
     private alertController: AlertController,
     private loadingController: LoadingController,
+
   ) {
     super(router, activatedRoute);
 
@@ -179,14 +182,74 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
 
 
   // todo
-  pickFileAndGetBase64String() {}
+  // pickFileAndGetBase64String() {
+
+  //   this.fileChooser.open().then((value) => {
+  //     this.presentAlert('esotu aqui showOpenWithDialog');
+
+  //     this.filePath.resolveNativePath(value).then((nativepath) => {
+
+  //       this.presentAlert('esotu aqui resolveNativePath');
+
+  //       const base64string = btoa(nativepath);
+
+  //       this.userImageSave.userId = this.usuario.id;
+  //       this.userImageSave.base64 = base64string;
+
+  //       this.imageService.saveImage(this.userImageSave).subscribe(res => {
+  //         this.msgReturn = 'SUCESSO';
+  //         this.presentLoadingPhotoProfile();
+  //         console.log(res);
+  //         this.presentAlertPhotoProfile('Foto de perfil atualizada com sucesso.');
+  //       },
+  //         error => {
+  //           this.msgReturn = 'ERROR';
+  //           this.presentLoadingPhotoProfile();
+  //           this.presentAlert('Ocorreu erro ao atualizar foto de perfil. Por favor tente novamente mais tarde.');
+  //           console.log(error);
+  //         });
+
+  //     });
+
+  //   });
 
 
+  // }
+
+  async pickFileAndGetBase64String() {
+
+    Camera.requestPermissions();
+
+    // const perm = await Camera.checkPermissions();
+
+    // this.presentAlert('eu entrei aqui mas n segui reto    permitido:' + perm.photos);
+    const img = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos
+    });
+
+    console.log(img);
 
 
+    this.userImageSave.userId = this.usuario.id;
+    this.userImageSave.base64 = img.base64String;
 
+    this.imageService.saveImage(this.userImageSave).subscribe(res => {
+      this.msgReturn = 'SUCESSO';
+      this.presentLoadingPhotoProfile();
+      console.log(res);
+      this.presentAlertPhotoProfile('Foto de perfil atualizada com sucesso.');
+    },
+      error => {
+        this.msgReturn = 'ERROR';
+        this.presentLoadingPhotoProfile();
+        this.presentAlert('Ocorreu erro ao atualizar foto de perfil. Por favor tente novamente mais tarde.');
+        console.log(error);
+      });
 
-
+  }
 
 
   async presentAlert(mensagem) {
@@ -211,7 +274,7 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
       buttons: [{
         text: 'OK',
         handler: () => {
-          this.router.navigate(['update-profile']);
+          this.router.navigate(['main/profile']);
         }
       }]
     });

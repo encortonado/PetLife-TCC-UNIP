@@ -27,18 +27,23 @@
   </ion-list>
 
   <ion-card *ngFor="let anuncio of anuncios">
-    <ion-item style="height: 150px;" (click)="viewAnuncio(anuncio)">
-      <img src="../../assets/imgs/{{anuncio.titulo}}.png">
-    </ion-item>
+
     <ion-item (click)="viewAnuncio(anuncio)">
       <h2 class="h2-titulo-anuncio">{{anuncio.titulo}}</h2>
     </ion-item>
-    <ion-card-content style="padding-bottom: 0px;padding-top: 10px;" (click)="viewAnuncio(anuncio)">
-      <h6 style="font-size: 17px;padding-left: 2%;">{{anuncio.descricao}}</h6>
-    </ion-card-content>
+
+    <ion-item style="height: 150px;" (click)="viewAnuncio(anuncio)">
+      <img src="../../assets/imgs/{{anuncio.titulo}}.png">
+    </ion-item>
+    
     <ion-item>
       <h1 class="h1-name" (click)="viewProfile(anuncio.userId)"> {{anuncio.userName}}</h1>
       <h2 class="h2-preco">R$ {{anuncio.preco}},00</h2>
     </ion-item>
+
+    <ion-card-content style="padding-bottom: 10px;padding-top: 10px;" (click)="viewAnuncio(anuncio)">
+      <h6 style="font-size: 17px;padding-left: 2%;">{{anuncio.descricao}}</h6>
+    </ion-card-content>
+    
   </ion-card>
 </ion-content>

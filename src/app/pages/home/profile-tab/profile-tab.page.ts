@@ -27,6 +27,7 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
 
   @ViewChild('avatar') profile: ElementRef;
 
+  public liberate = false;
 
   auth: AuthenticateResponse;
   usuario = new UserDTO();
@@ -72,6 +73,10 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
       estado: [this.usuario.estado, [Validators.required]],
     });
 
+  }
+
+  liberating() {
+    this.liberate = true;
   }
 
 
@@ -153,6 +158,10 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
 
 
   updateProfile() {
+
+    if (this.profile.nativeElement.files[0]) {
+      this.pickFileAndGetBase64String();
+    }
 
     this.usuario.dataAtualizacao = new Date().toISOString();
     console.log(this.usuario.dataNascimento);
@@ -295,6 +304,28 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
     });
 
     await setTimeout(() => { alert.present(); }, 2000);
+  }
+
+  async presentAlertImagePicker() {
+    const alert = await this.alertController.create({
+      header: this.msgReturn,
+      message: `<label for="avatar">Choose a profile picture:</label>
+      <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" #avatar  hidden/>`,
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.router.navigate(['main/profile']);
+        }
+      },
+      {
+        text: 'Cancelar',
+        handler: () => {
+          this.router.navigate(['main/profile']);
+        }
+      }]
+    });
+
+    await setTimeout(() => { alert.present(); }, 200);
   }
 
   async presentLoading() {

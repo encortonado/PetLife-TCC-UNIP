@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "PetLife",
+	"appName": "app",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

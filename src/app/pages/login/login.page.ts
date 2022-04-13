@@ -2,7 +2,7 @@ import { AuthService } from './../../services/authentication/auth.service';
 import { AuthenticateResponse } from './../../models/authenticate-response';
 import { AuthenticateService } from './../../services/authentication/user/authenticate.service';
 import { AlertController, LoadingController, Platform } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Authenticate } from 'src/app/models/authenticate';
 import { GlobalParameters } from 'src/app/shared/parameters/global-parameters';
@@ -14,6 +14,7 @@ import { GlobalParameters } from 'src/app/shared/parameters/global-parameters';
 })
 export class LoginPage implements OnInit {
 
+
   auth: Authenticate = {
     email: '',
     password: ''
@@ -23,7 +24,9 @@ export class LoginPage implements OnInit {
   msgBody = '';
   backButtonSubscription;
 
+
   public authResponse: AuthenticateResponse;
+
 
   constructor(
     private router: Router,
@@ -33,7 +36,7 @@ export class LoginPage implements OnInit {
     public loadingController: LoadingController,
     public parameters: GlobalParameters,
     public platform: Platform
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
@@ -54,7 +57,7 @@ export class LoginPage implements OnInit {
 
         setTimeout(() => {
           this.router.navigateByUrl('/main');
-        },2001);
+        }, 2001);
       } else {
         this.msgHeader = 'Authenticate Failure';
         this.msgBody = 'Usuário ou Senha inválidos!';
@@ -72,6 +75,10 @@ export class LoginPage implements OnInit {
   }
 
   register() {
+
+
+
+
 
     this.router.navigateByUrl('/sign-up');
   }

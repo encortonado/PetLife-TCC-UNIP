@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserImageDTO } from './../../../models/user-image';
 import { AddressDTO } from './../../../models/address';
 import { UserDTO } from './../../../models/user';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RouterPagePage } from './../../../shared/pages/router-page/router-page/router-page.page';
 import { UserService } from './../../../services/authentication/user/user.service';
@@ -24,6 +24,8 @@ import * as moment from 'moment';
   styleUrls: ['./profile-tab.page.scss'],
 })
 export class ProfileTabPage extends RouterPagePage implements OnDestroy {
+
+  @ViewChild('avatar') profile: ElementRef;
 
 
   auth: AuthenticateResponse;
@@ -216,25 +218,27 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
 
   // }
 
-  async pickFileAndGetBase64String() {
+  pickFileAndGetBase64String() {
 
-    Camera.requestPermissions();
+    let img = null;
 
-    // const perm = await Camera.checkPermissions();
+    img = this.profile.nativeElement.files.item(0);
 
-    // this.presentAlert('eu entrei aqui mas n segui reto    permitido:' + perm.photos);
-    const img = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Photos
-    });
+    console.log(this.profile.nativeElement.files[0]);
 
-    console.log(img);
+    let reader = new FileReader();
 
+    reader.readAsDataURL(this.profile.nativeElement.files[0]);
+
+    reader.onload = () => {
+      //me.modelvalue = reader.result;
+      console.log(reader.result);
+
+      this.userImageSave.base64 = reader.result as string;
+    };
 
     this.userImageSave.userId = this.usuario.id;
-    this.userImageSave.base64 = img.base64String;
+
 
     this.imageService.saveImage(this.userImageSave).subscribe(res => {
       this.msgReturn = 'SUCESSO';
@@ -249,6 +253,17 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
         console.log(error);
       });
 
+  }
+
+  async selectPhoto() {
+    const img = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos
+    });
+
+    return img.base64String;
   }
 
 

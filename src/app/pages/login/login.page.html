@@ -1,24 +1,47 @@
 <ion-content padding>
+  <label for="avatar">Choose a profile picture:</label>
+
 
 
   <div class="container">
-    <img class="logo" src="../../../assets/imgs/petrun.jpg" alt="logo">
+    <img class="logo" src="../../../assets/imgs/petrun.jpg" alt="logo" />
   </div>
   <form>
     <ion-item>
       <div class="login-input">
         <ion-label class="label" stacked>Email</ion-label>
-        <ion-input class="email-input" type="text" [(ngModel)]="auth.email" name="email"></ion-input>
+        <ion-input
+          class="email-input"
+          type="text"
+          [(ngModel)]="auth.email"
+          name="email"
+        ></ion-input>
       </div>
     </ion-item>
     <br />
     <ion-item>
       <div class="login-input">
         <ion-label class="label" stacked>Senha</ion-label>
-        <ion-input class="senha-input" type="password" [(ngModel)]="auth.password" name="password"></ion-input>
+        <ion-input
+          class="senha-input"
+          type="password"
+          [(ngModel)]="auth.password"
+          name="password"
+        ></ion-input>
       </div>
     </ion-item>
-    <ion-button style="margin-top: 9%; width: 85%; margin-left: 7%;" expand="block" (click)="login()">Entrar</ion-button>
-    <ion-button style="margin-top: 5%; width: 85%; margin-left: 7%;" expand="block" (click)="register()" fill="outline">Cadastre-se</ion-button>
+    <ion-button
+      style="margin-top: 9%; width: 85%; margin-left: 7%"
+      expand="block"
+      (click)="login()"
+      >Entrar</ion-button
+    >
+    <ion-button
+      style="margin-top: 5%; width: 85%; margin-left: 7%"
+      expand="block"
+      (click)="register()"
+      fill="outline"
+      >Cadastre-se</ion-button
+    >
   </form>
 </ion-content>

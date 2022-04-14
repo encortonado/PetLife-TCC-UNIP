@@ -248,19 +248,21 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
 
     this.userImageSave.userId = this.usuario.id;
 
-
-    this.imageService.saveImage(this.userImageSave).subscribe(res => {
-      this.msgReturn = 'SUCESSO';
-      this.presentLoadingPhotoProfile();
-      console.log(res);
-      this.presentAlertPhotoProfile('Foto de perfil atualizada com sucesso.');
-    },
-      error => {
-        this.msgReturn = 'ERROR';
+    setTimeout(() => {
+      this.imageService.saveImage(this.userImageSave).subscribe(res => {
+        this.msgReturn = 'SUCESSO';
         this.presentLoadingPhotoProfile();
-        this.presentAlert('Ocorreu erro ao atualizar foto de perfil. Por favor tente novamente mais tarde.');
-        console.log(error);
-      });
+        console.log(res);
+        this.presentAlertPhotoProfile('Foto de perfil atualizada com sucesso.');
+      },
+        error => {
+          this.msgReturn = 'ERROR';
+          this.presentLoadingPhotoProfile();
+          this.presentAlert('Ocorreu erro ao atualizar foto de perfil. Por favor tente novamente mais tarde.');
+          console.log(error);
+        });
+    }, 2000);
+
 
   }
 

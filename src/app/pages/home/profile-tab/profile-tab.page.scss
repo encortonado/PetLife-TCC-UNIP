@@ -72,7 +72,12 @@ ion-button{
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  color: gray;
+  color: white;
   float: right;
   margin-top: 3%;
+}
+
+ion-popover {
+  --width: 300px !important;
+  left: -30%;
 }

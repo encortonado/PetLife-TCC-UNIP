@@ -45,17 +45,63 @@
       </ion-list-header>
 
       <ion-item>
+
         <ion-label>Primeiro Horário</ion-label>
-        <ion-datetime displayFormat="HH" [(ngModel)]="horario1" name="horario1" formControlName="h1"></ion-datetime> <span> Hrs</span>
-      </ion-item>
+
+        <ion-input
+        value="{{ horario1 | date: 'HH' }}"
+        id="horario1"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="horario1" size="cover">
+          <ng-template>
+
+            <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario1" name="horario1" formControlName="h1"></ion-datetime> 
+      
+          </ng-template>
+        </ion-popover>
+        
+     </ion-item>
+
       <ion-item>
+
         <ion-label>Segundo Horário</ion-label>
-        <ion-datetime displayFormat="HH" [(ngModel)]="horario2" name="horario2" formControlName="h2"></ion-datetime> Hrs
+        
+        <ion-input
+        value="{{ horario2 | date: 'HH' }}"
+        id="horario2"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="horario2" size="cover">
+          <ng-template>
+
+            <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario2" name="horario2" formControlName="h2"></ion-datetime> <span> Hrs </span>
+      
+          </ng-template>
+        </ion-popover>
+        
       </ion-item>
+
       <ion-item>
+
         <ion-label>Terceiro Horário</ion-label>
-        <ion-datetime displayFormat="HH" [(ngModel)]="horario3" name="horario3" formControlName="h3"></ion-datetime><span> Hrs</span>
+
+        
+        <ion-input
+        value="{{ horario3 | date: 'HH' }}"
+        id="horario3"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="horario3" size="cover">
+          <ng-template>
+
+          <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario3" name="horario3" formControlName="h3"></ion-datetime><span> Hrs</span>
+     
+          </ng-template>
+        </ion-popover>
+
       </ion-item>
+
     </ion-list>
 
     <ion-list>

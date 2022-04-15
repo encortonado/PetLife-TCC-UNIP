@@ -9,7 +9,7 @@
 <ion-content>
 
   <ion-item *ngIf="userImage.base64 !== null">
-    <ion-avatar style="border: 2px solid #c5bdbd;width: 135px;height: 135px;border-radius: 27%;margin-bottom: 16%;">
+    <ion-avatar style="border: 2px solid #c5bdbd;width: 135px;height: 135px;border-radius: 27%;margin-bottom: 20%;">
       <img style="width: 100%;height: 100%;border-radius: 26%;" src="{{userImage.base64}}">
 
       <div *ngIf="showEdit" style="display: flex; justify-content: right;">
@@ -18,9 +18,6 @@
         <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" #avatar  [hidden]="true"/>
 
       </div>
-
-
-
     </ion-avatar>
   </ion-item>
 
@@ -52,10 +49,22 @@
       <ion-input disabled="true" type="text" [(ngModel)]="usuario.email" name="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
+    
       <ion-label>Data de Nascimento</ion-label>
-      <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="usuario.dataNascimento" name="dataNascimento"
-        placeholder="DD MM YYYY" formControlName="dataNascimento">
-      </ion-datetime>
+
+        <ion-input
+        value="{{ usuario.dataNascimento | date: 'dd.MM.YYYY' }}"
+        id="date"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="date" size="cover">
+          <ng-template>
+            <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="usuario.dataNascimento" name="dataNascimento"
+              placeholder="DD MM YYYY" formControlName="dataNascimento">
+            </ion-datetime>
+          </ng-template>
+        </ion-popover>
+
     </ion-item>
     <ion-item>
       <ion-input type="number" maxlength="2" [(ngModel)]="usuario.ddd" name="ddd" required placeholder="DDD" formControlName="ddd"></ion-input>

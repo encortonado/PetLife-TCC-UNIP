@@ -11,7 +11,7 @@
 </ion-header>
 <ion-content>
 
-  <img src="../../assets/imgs/servicos.jpg" />
+  <img src="../../assets/imgs/servicos.png" />
 
   <h1 *ngIf="!isActive">ANUNCIO DESATIVADO</h1>
 
@@ -137,15 +137,46 @@
 
       <ion-item>
         <ion-label disabled="true">Primeiro Horário</ion-label>
-        <ion-datetime disabled="true" displayFormat="HH"></ion-datetime>
+        
+        <ion-input
+        value="{{ anuncio.horario1 | date: 'HH' }}"
+        id="horario1"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="horario1"  size="cover">
+          <ng-template>
+            <ion-datetime disabled="true"  presentation="time" displayFormat="HH"></ion-datetime>
+          </ng-template>
+        </ion-popover>
+
       </ion-item>
       <ion-item>
         <ion-label disabled="true">Segundo Horário</ion-label>
-        <ion-datetime disabled="true" displayFormat="HH"></ion-datetime>
+        <ion-input
+        value="{{ anuncio.horario2 | date: 'HH' }}"
+        id="horario2"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="horario2"  size="cover">
+          <ng-template>
+            <ion-datetime disabled="true"  presentation="time" displayFormat="HH"></ion-datetime>
+          </ng-template>
+        </ion-popover>
+
       </ion-item>
       <ion-item>
         <ion-label disabled="true">Terceiro Horário</ion-label>
-        <ion-datetime disabled="true" displayFormat="HH"></ion-datetime>
+        <ion-input
+        value="{{ anuncio.horario3 | date: 'HH' }}"
+        id="horario3"
+        class="ion-text-end"></ion-input>
+
+        <ion-popover trigger="horario3" size="cover">
+          <ng-template>
+            <ion-datetime disabled="true"  presentation="time" displayFormat="HH"></ion-datetime>
+          </ng-template>
+        </ion-popover>
+
       </ion-item>
     </ion-list>
     <ion-grid>

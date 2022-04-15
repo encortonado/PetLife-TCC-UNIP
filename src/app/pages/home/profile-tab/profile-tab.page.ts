@@ -122,7 +122,8 @@ export class ProfileTabPage extends RouterPagePage implements OnDestroy {
 
 
   logout() {
-    this.authService.logout();
+    // this.authService.logout();
+    this.router.navigateByUrl('');
   }
 
   editProfile() {

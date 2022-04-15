@@ -16,25 +16,27 @@ import { PetImageDTO } from './../../../models/pet-image';
 })
 export class PetTabPage extends RouterPagePage implements OnDestroy  {
 
-  constructor(
-    public navCtrl: NavController,
-    public petService: PetService,
-    public alertController: AlertController,
-    public loadingController: LoadingController,
-    public authService: AuthService,
-    public UserService: UserService,
-    private router: Router,
-    private ActivatedRoute: ActivatedRoute
-  ) { 
-      super(router, ActivatedRoute);
-  }
-
   pets: Pet[];
   email: string;
   usuario: User;
 
   petImage = new PetImageDTO();
   petImageSave = new PetImageDTO();
+
+  constructor(
+    public navCtrl: NavController,
+    public petService: PetService,
+    public alertController: AlertController,
+    public loadingController: LoadingController,
+    public authService: AuthService,
+    public userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+      super(router, activatedRoute);
+  }
+
+
 
   pageServicos() {
     this.router.navigateByUrl('/main/pet/register');
@@ -45,7 +47,7 @@ export class PetTabPage extends RouterPagePage implements OnDestroy  {
     this.authService.getUser().then((val) => {
 
       this.email = val;
-      this.UserService.findUserByEmail(this.email).subscribe((response) => {
+      this.userService.findUserByEmail(this.email).subscribe((response) => {
 
         this.usuario = response;
 

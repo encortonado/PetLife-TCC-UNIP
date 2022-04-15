@@ -56,17 +56,17 @@
         <ion-popover trigger="horario1" size="cover">
           <ng-template>
 
-            <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario1" name="horario1" formControlName="h1"></ion-datetime> 
-      
+            <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario1" name="horario1" formControlName="h1"></ion-datetime>
+
           </ng-template>
         </ion-popover>
-        
+
      </ion-item>
 
       <ion-item>
 
         <ion-label>Segundo Horário</ion-label>
-        
+
         <ion-input
         value="{{ horario2 | date: 'HH' }}"
         id="horario2"
@@ -76,17 +76,17 @@
           <ng-template>
 
             <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario2" name="horario2" formControlName="h2"></ion-datetime> <span> Hrs </span>
-      
+
           </ng-template>
         </ion-popover>
-        
+
       </ion-item>
 
       <ion-item>
 
         <ion-label>Terceiro Horário</ion-label>
 
-        
+
         <ion-input
         value="{{ horario3 | date: 'HH' }}"
         id="horario3"
@@ -96,7 +96,7 @@
           <ng-template>
 
           <ion-datetime displayFormat="HH" presentation="time" minuteValues="0" [(ngModel)]="horario3" name="horario3" formControlName="h3"></ion-datetime><span> Hrs</span>
-     
+
           </ng-template>
         </ion-popover>
 

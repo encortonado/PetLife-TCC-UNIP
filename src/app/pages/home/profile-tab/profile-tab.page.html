@@ -25,7 +25,13 @@
     <ion-avatar style="border: 2px solid #c5bdbd;width: 135px;height: 135px;border-radius: 27%;margin-bottom: 16%;">
       <img style="width: 100%;height: 100%;border-radius: 26%;"
         src="../../assets/imgs/profile-default.jpg">
-      <ion-icon (click)="pickFileAndGetBase64String()" class="ion-camera" name="camera"></ion-icon>
+
+        <div *ngIf="showEdit" style="display: flex; justify-content: right;">
+          <ion-fab-button style="margin-right: 10%;" (click)="liberating()"><label for="avatar"> <ion-icon class="ion-camera" name="camera"></ion-icon> </label></ion-fab-button>
+          <!-- <ion-button *ngIf="liberate"><ion-icon class="ion-add" name="add"></ion-icon></ion-button> -->
+           <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" #avatar  [hidden]="true"/>
+
+         </div>
     </ion-avatar>
   </ion-item>
 
@@ -49,7 +55,7 @@
       <ion-input disabled="true" type="text" [(ngModel)]="usuario.email" name="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
-    
+
       <ion-label>Data de Nascimento</ion-label>
 
         <ion-input

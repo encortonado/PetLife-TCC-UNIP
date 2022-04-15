@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { AdsService } from './../../../../services/ads/ads.service';
@@ -21,6 +21,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
 
+  @ViewChild('avatar') profile: ElementRef;
+
   pet = new Pet();
   showEdit = false;
 
@@ -31,15 +33,16 @@ export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
   numbers = new Array();
 
   files: Observable<any[]>;
-  PetImage = new PetImage();
-  PetImageSave = new PetImage();
-  public AtpetGroup: FormGroup;
+  petImage = new PetImage();
+  petImageSave = new PetImage();
+  public atpetGroup: FormGroup;
+  public liberate = false;
 
 
   constructor(
     public activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
-    public AdsService: AdsService,
+    public adsService: AdsService,
     public alertController: AlertController,
     public loadingController: LoadingController,
     public authService: AuthService,
@@ -50,23 +53,22 @@ export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
     // private base64: Base64,
     private imageService: ImageService,
     private route: ActivatedRoute,
-    private AtpetBuilder: FormBuilder
+    private atpetBuilder: FormBuilder
   ) {
     super(router, route);
-    this.AtpetGroup = this.AtpetBuilder.group({
+    this.atpetGroup = this.atpetBuilder.group({
 
-      'nome': [this.pet.nome, Validators.compose([
-        Validators.required
-      ])],
-      'idade': [this.pet.idade, Validators.compose([
-        Validators.required])],
-      'peso': [this.pet.peso, Validators.compose([
-        Validators.required])],
-      'Raca': [this.pet.raca, Validators.compose([
-        Validators.required])],
-      'tipo': [this.pet.petType, null],
-      'descricao': [this.pet.descricao, null],
+      nome: [this.pet.nome, [Validators.required]],
+      idade: [this.pet.idade, [Validators.required]],
+      peso: [this.pet.peso, [Validators.required]],
+      Raca: [this.pet.raca, [Validators.required]],
+      tipo: [this.pet.petType, null],
+      descricao: [this.pet.descricao, null],
     });
+  }
+
+  liberating() {
+    this.liberate = true;
   }
 
   onEnter() {
@@ -85,13 +87,18 @@ export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
       }
 
       this.imageService.findByPetId(this.pet.id).subscribe(res2 => {
-        this.PetImage = res2;
+        this.petImage = res2;
       });
 
     });
   }
 
   atualizarPet() {
+
+    if (this.profile.nativeElement.files[0]) {
+      this.pickFileAndGetBase64String();
+    }
+
     this.petService.updatePet(this.pet)
       .subscribe((response2) => {
         this.msgReturn = 'SUCESSO';
@@ -183,31 +190,44 @@ export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
     super.ngOnDestroy();
   }
 
-  // PickFileAndGetBase64String() {
-  //   this.fileChooser.open().then((fileuri) => {
-  //     this.filePath.resolveNativePath(fileuri).then((nativepath) => {
-  //       this.base64.encodeFile(nativepath).then((base64string) => {
+  pickFileAndGetBase64String() {
 
-  //         this.PetImageSave.petId = this.pet.id;
-  //         this.PetImageSave.base64 = base64string;
+    let img = null;
 
-  //         this.imageService.savePetImage(this.PetImageSave).subscribe(res => {
-  //           this.msgReturn = 'SUCESSO';
-  //           this.presentLoadingPhotoProfile();
-  //           console.log(res);
-  //           this.presentAlertPhotoProfile('Foto do Pet atualizada com sucesso.');
-  //         },
-  //           error => {
-  //             this.msgReturn = 'ERROR';
-  //             this.presentLoadingPhotoProfile();
-  //             this.presentAlert('Ocorreu erro ao atualizar foto do Pet. Por favor tente novamente mais tarde.');
-  //             console.log(error);
-  //           });
-  //       });
-  //     });
-  //   });
+    img = this.profile.nativeElement.files.item(0);
 
-  // }
+    console.log(this.profile.nativeElement.files[0]);
+
+    let reader = new FileReader();
+
+    reader.readAsDataURL(this.profile.nativeElement.files[0]);
+
+    reader.onload = () => {
+      //me.modelvalue = reader.result;
+      console.log(reader.result);
+
+      this.petImageSave.base64 = reader.result as string;
+    };
+
+    this.petImageSave.petId = this.pet.id;
+
+    setTimeout(() => {
+      this.imageService.savePetImage(this.petImageSave).subscribe(res => {
+        this.msgReturn = 'SUCESSO';
+        this.presentLoadingPhotoProfile();
+        console.log(res);
+        this.presentAlertPhotoProfile('Foto do Pet atualizada com sucesso.');
+      },
+        error => {
+          this.msgReturn = 'ERROR';
+          this.presentLoadingPhotoProfile();
+          this.presentAlert('Ocorreu erro ao atualizar foto do Pet. Por favor tente novamente mais tarde.');
+          console.log(error);
+        });
+    }, 2000);
+
+
+  }
 
   async presentLoadingPhotoProfile() {
     const loading = await this.loadingController.create({
@@ -228,7 +248,7 @@ export class ViewUpdatePetPage extends RouterPagePage implements OnDestroy {
       buttons: [{
         text: 'OK',
         handler: () => {
-          this.router.navigate(['/update-pet-profile'], {
+          this.router.navigate(['/main/pet/update'], {
             queryParams: this.pet
           });
         }

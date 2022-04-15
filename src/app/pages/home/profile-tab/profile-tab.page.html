@@ -17,6 +17,8 @@
        <!-- <ion-button *ngIf="liberate"><ion-icon class="ion-add" name="add"></ion-icon></ion-button> -->
         <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" #avatar  [hidden]="true"/>
 
+        <ion-icon *ngIf="this.liberate" name="checkmark-circle"></ion-icon>
+
       </div>
     </ion-avatar>
   </ion-item>
@@ -30,6 +32,8 @@
           <ion-fab-button style="margin-right: 10%;" (click)="liberating()"><label for="avatar"> <ion-icon class="ion-camera" name="camera"></ion-icon> </label></ion-fab-button>
           <!-- <ion-button *ngIf="liberate"><ion-icon class="ion-add" name="add"></ion-icon></ion-button> -->
            <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" #avatar  [hidden]="true"/>
+
+           <ion-icon *ngIf="this.liberate" name="checkmark-circle"></ion-icon>
 
          </div>
     </ion-avatar>

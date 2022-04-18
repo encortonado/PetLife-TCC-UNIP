@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-   baseUrl: 'https://petlife-fmu.herokuapp.com'
+   baseUrl: 'https://pet-care-tcc-unip.herokuapp.com'
 };

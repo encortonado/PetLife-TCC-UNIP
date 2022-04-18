@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">PetCare</string>
     <string name="title_activity_main">PetCare</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="package_name">io.ionic.bortolo</string>
+    <string name="custom_url_scheme">io.ionic.bortolo</string>
 </resources>

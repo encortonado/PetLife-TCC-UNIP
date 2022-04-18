@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package io.ionic.bortolo;
 
 import com.getcapacitor.BridgeActivity;
 
